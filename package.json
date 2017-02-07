@@ -1,6 +1,6 @@
 {
-  "name": "sii.vm-front",
-  "version": "1.0.0",
+  "name": "visual-management",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --host 0.0.0.0 --hot",
