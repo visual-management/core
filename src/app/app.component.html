@@ -7,8 +7,7 @@
             :is-resizable="true"
             :vertical-compact="false"
             :margin="[10, 10]"
-            :use-css-transforms="true"
-    >
+            :use-css-transforms="true">
 
         <grid-item v-for="item in layout"
                    :x="item.x"
@@ -16,9 +15,8 @@
                    :w="item.w"
                    :h="item.h"
                    :i="item.i">
-            Pute{{item.i}}
+            <component :is="item.component" config="item.config"></component>
         </grid-item>
     </grid-layout>
 
-    <my-component></my-component>
 </div>
