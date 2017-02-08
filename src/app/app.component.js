@@ -11,7 +11,31 @@ export default {
   components: components,
   data () {
     return {
-      layout: testLayout
+      editing: true,
+      layout : testLayout
+    };
+  },
+
+  methods: {
+    onEdit () {
+      this.editing = !this.editing;
+    },
+
+    onSave () {
+      this.$socket.emit('grid.save', this.layout.map((item) => ({
+        i: item.i,
+        x: item.x,
+        y: item.y,
+        w: item.w,
+        h: item.h
+      })));
+    }
+  },
+
+  sockets: {
+    grid (data) {
+      this.layout = data;
     }
   }
+
 }
