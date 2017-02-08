@@ -2,6 +2,8 @@
   "MONGODB": {
     "HOST": "localhost",
     "PORT": 27017,
+    "USERNAME": "vm",
+    "PASSWORD": "jqUrBDpJunRj3zek",
     "DATABASE": "visual-management"
   }
 }

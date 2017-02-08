@@ -5,6 +5,7 @@
   "scripts": {
     "start": "npm-run-all --parallel dev start:server",
     "start:server": "node src/server/index.js",
+    "start:server:vgo": "NODE_ENV=vgo node src/server/index.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --host 0.0.0.0 --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "postinstall": "cd src/server && npm install"
