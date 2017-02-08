@@ -28,6 +28,16 @@ export default {
   methods: {
     onEdit () {
       this.editing = !this.editing;
+    },
+
+    onSave () {
+      this.$socket.emit('grid.save', this.layout.map((item) => ({
+        i: item.i,
+        x: item.x,
+        y: item.y,
+        w: item.w,
+        h: item.h
+      })));
     }
   }
 
