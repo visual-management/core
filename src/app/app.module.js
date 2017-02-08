@@ -1,20 +1,21 @@
 import VueGridLayout from 'vue-grid-layout';
+import PluginManager from './plugin-manager/plugin-manager';
 
 // vm plugin add entry
 import SonarPlugin from 'visual-management-pm/src/app/sonar-plugin/entry-point';
-let plugins = [SonarPlugin];
+let plugs = [SonarPlugin];
 
-let components = {
+let comps = {
   GridLayout: VueGridLayout.GridLayout,
   GridItem  : VueGridLayout.GridItem
 };
 
-for (let plugin of plugins) {
+for (let plugin of plugs) {
   console.log(`Loading plugin ${plugin.name}`);
   for (let component of plugin.components) {
-    components[component.tag] = component.vue;
+    comps[component.tag] = component.vue;
   }
 }
 
-
-export default components;
+export const components = comps;
+export const plugins = new PluginManager(plugs);

@@ -1,9 +1,8 @@
-import components from './app.module';
+import { components, plugins } from './app.module';
 
-
+let criticalReporterPlugin = plugins.getPluginById('sonar-plugin').getComponentByTag('critical-reporter');
 let testLayout = [
-  {"x": 0, "y": 0, "w": 1, "h": 1, "i": "0", component: "critical-reporter"}
-
+  {"x": 0, "y": 0, "w": criticalReporterPlugin.defaultWidth, "h": criticalReporterPlugin.defaultHeight, "i": "0", component: criticalReporterPlugin.tag}
 ];
 
 
