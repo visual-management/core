@@ -1,0 +1,14 @@
+{
+  "name": "visual-management-server",
+  "version": "0.0.1",
+  "description": "Small server for the visual management",
+  "main": "index.js",
+  "license": "MIT",
+  "contributors": [
+    "Olivier Le Lay",
+    "Valentin Got <gotvalentin@gmail.com>"
+  ],
+  "dependencies": {
+    "socket.io": "^1.7.2"
+  }
+}
