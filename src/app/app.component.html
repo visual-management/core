@@ -18,6 +18,8 @@
       :i="item.i"
       v-bind:class="{'editing': editing, 'not-editing': !editing}">
       <div>MON COMPOSANT</div>
+
+      <component :is="item.component" config="item.config"></component>
     </grid-item>
 
     <div style="position: absolute; bottom: 0; right: 0; color: red; padding: 15px;">
@@ -26,5 +28,3 @@
     </div>
   </grid-layout>
 </div>
-
-            <component :is="item.component" config="item.config"></component>
