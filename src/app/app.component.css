@@ -1,3 +1,11 @@
 .vue-grid-item {
     background-color: red;
 }
+
+.not-editing {
+  pointer-events: none;
+}
+
+.not-editing > .vue-resizable-handle {
+  display: none;
+}
