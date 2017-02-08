@@ -9,6 +9,8 @@
     "Valentin Got <gotvalentin@gmail.com>"
   ],
   "dependencies": {
+    "config": "^1.25.1",
+    "mongoose": "^4.8.1",
     "socket.io": "^1.7.2"
   }
 }
