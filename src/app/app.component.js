@@ -39,6 +39,12 @@ export default {
         h: item.h
       })));
     }
+  },
+
+  sockets: {
+    grid (data) {
+      this.layout = data;
+    }
   }
 
 }

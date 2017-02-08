@@ -10,7 +10,8 @@ new Vue({
   render : h => h(App),
   sockets: {
     connect () {
-      console.log('socket connected')
-    }
-  },
+      console.log('Socket connected');
+
+      // this.$socket.on('grid', (data) => console.log(data));
+    }  },
 });

@@ -11,6 +11,9 @@ app.listen(9090);
 io.on('connection', (socket) => {
   console.log('CONNECTED');
 
+  // Emit grid on client's connection
+  GridItem.find().then((grid) => socket.emit('grid', grid));
+
   // Save the grid
   socket.on('grid.save', (data) => {
     GridItem.remove({})
