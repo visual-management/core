@@ -27,7 +27,8 @@ export default {
         x: item.x,
         y: item.y,
         w: item.w,
-        h: item.h
+        h: item.h,
+        component: item.component
       })));
     }
   },

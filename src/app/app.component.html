@@ -17,8 +17,6 @@
       :h="item.h"
       :i="item.i"
       v-bind:class="{'editing': editing, 'not-editing': !editing}">
-      <div>MON COMPOSANT</div>
-
       <component :is="item.component" config="item.config"></component>
     </grid-item>
 

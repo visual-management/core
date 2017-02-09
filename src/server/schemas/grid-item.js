@@ -6,7 +6,8 @@ const GridItem = new Schema({
   x: Number,
   y: Number,
   w: Number,
-  h: Number
+  h: Number,
+  component: String
 });
 
 module.exports = mongoose.model('grid-items', GridItem);
