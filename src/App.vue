@@ -19,7 +19,7 @@
         :h="item.h"
         :i="item.i"
         v-bind:class="{'editing': editing, 'not-editing': !editing}">
-        <component :is="item.component" config="item.config"></component>
+        <component :is="item.component" :config="item.config"></component>
       </grid-item>
 
       <div style="position: absolute; bottom: 0; right: 0; color: red; padding: 15px;">
@@ -34,8 +34,12 @@
   import { components, plugins } from './app.module'
 
   let criticalReporterPlugin = plugins.getPluginById('sonar-plugin').getComponentByTag('critical-reporter')
+  let sonarConfig = {
+    url: 'http://ic-sonar.sii-ouest.fr/sonar/api/resources?resource={projectId}&depth=0&format=json&metrics=critical_violations,major_violations,minor_violations,info_violations,blocker_violations',
+    projectId: 21563
+  }
   let testLayout = [
-    {'x': 0, 'y': 0, 'w': criticalReporterPlugin.defaultWidth, 'h': criticalReporterPlugin.defaultHeight, 'i': '0', component: criticalReporterPlugin.tag}
+    {'x': 0, 'y': 0, 'w': criticalReporterPlugin.defaultWidth, 'h': criticalReporterPlugin.defaultHeight, 'i': '0', component: criticalReporterPlugin.tag, config: sonarConfig}
   ]
 
   export default {
