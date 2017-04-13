@@ -28,28 +28,28 @@
     </grid-layout>
   </div>
 </template>
+
 <script>
-  import { components, plugins } from './app.module';
+  import { components, plugins } from './app.module'
 
-  let criticalReporterPlugin = plugins.getPluginById('sonar-plugin').getComponentByTag('critical-reporter');
+  let criticalReporterPlugin = plugins.getPluginById('sonar-plugin').getComponentByTag('critical-reporter')
   let testLayout = [
-    {"x": 0, "y": 0, "w": criticalReporterPlugin.defaultWidth, "h": criticalReporterPlugin.defaultHeight, "i": "0", component: criticalReporterPlugin.tag}
-  ];
-
+    {'x': 0, 'y': 0, 'w': criticalReporterPlugin.defaultWidth, 'h': criticalReporterPlugin.defaultHeight, 'i': '0', component: criticalReporterPlugin.tag}
+  ]
 
   export default {
-    name      : 'app',
+    name: 'app',
     components: components,
     data () {
       return {
         editing: true,
-        layout : testLayout
-      };
+        layout: testLayout
+      }
     },
 
     methods: {
       onEdit () {
-        this.editing = !this.editing;
+        this.editing = !this.editing
       },
 
       onSave () {
@@ -60,22 +60,22 @@
           w: item.w,
           h: item.h,
           component: item.component
-        })));
+        })))
       }
     },
 
     sockets: {
       grid (data) {
-        this.layout = data;
+        this.layout = data
       }
     }
-
   }
 </script>
 <style>
   .vue-grid-item {
     background-color: gray;
   }
+
   h1 {
     width: 100%;
     text-align: center;
