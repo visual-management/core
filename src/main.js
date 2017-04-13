@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueSocketio from 'vue-socket.io';
-import App from './app/app.component.vue'
+import App from './app/app.vue'
 
 // Connect to the WebSocket
 Vue.use(VueSocketio, 'http://localhost:9090');
