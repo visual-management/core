@@ -23,10 +23,11 @@
       </grid-item>
 
       <div style="position: absolute; bottom: 0; right: 0; color: red; padding: 15px;">
-        <button @click="onEdit()">EDIT</button>
+        <button @click="showModal = !showModal" show-modal>EDIT</button>
         <button @click="onSave()" v-if="editing">SAVE</button>
       </div>
     </grid-layout>
+    <modal v-show="showModal" v-model="showModal"></modal>
   </div>
 </template>
 
@@ -48,7 +49,8 @@
     data () {
       return {
         editing: true,
-        layout: testLayout
+        layout: testLayout,
+        showModal: false
       }
     },
 
