@@ -77,6 +77,9 @@
   }
 </script>
 <style>
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
   .vue-grid-item {
     background-color: gray;
   }
