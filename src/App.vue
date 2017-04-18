@@ -60,7 +60,7 @@
       },
 
       onSave () {
-        this.$socket.emit('grid.save', this.layout.map((item) => ({
+        this.$socket.emit('component.saveAll', this.layout.map((item) => ({
           i: item.i,
           x: item.x,
           y: item.y,

@@ -6,11 +6,16 @@
     </div>
     <div class="modal-body">
       <div v-for="plugin in plugins">
-        {{ plugin.name }}
+        <div class="plugin-name">{{ plugin.name }}
+        </div>
+        <div class="content-component">
+          <div v-for="subPlugin in plugin.components" class="component">
+            {{ subPlugin.name }}
+          </div>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
-      <h3>Modal Footer</h3>
     </div>
   </div>
 </template>
@@ -31,14 +36,10 @@
       }
     },
     created () {
-      console.log(Plugins)
       this.plugins = Plugins
       this.internalValue = this.value
     },
     methods: {
-      close () {
-        this.internalValue = !this.internalValue
-      }
     }
   }
 </script>
@@ -54,6 +55,7 @@
 
     span {
       width: 20px;
+      cursor: pointer;
     }
   }
 
@@ -63,12 +65,19 @@
     display: block;
     max-height: 55vh;
     overflow: auto;
+
+    .content-component {
+      margin-left: 30px;
+    }
   }
 
   .modal-footer {
-    padding: 2px 16px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     background-color: #5cb85c;
     color: white;
+    padding: 10px 0;
   }
 
   .modal-content {
