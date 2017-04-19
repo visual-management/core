@@ -21,12 +21,31 @@
         v-bind:class="{'editing': editing, 'not-editing': !editing}">
         <component :is="item.component" :config="item.config"></component>
       </grid-item>
-
-      <div style="position: absolute; bottom: 0; right: 0; color: red; padding: 15px;">
-        <button @click="showModal = !showModal" show-modal>EDIT</button>
-        <button @click="onSave()" v-if="editing">SAVE</button>
-      </div>
     </grid-layout>
+
+    <ul class="mfb-component--br mfb-slidein" data-mfb-toggle="hover" data-mfb-state="closed">
+      <li class="mfb-component__wrap">
+        <a href="#" class="mfb-component__button--main">
+          <i class="mfb-component__main-icon--resting fa fa-bars"></i>
+          <i class="mfb-component__main-icon--active fa fa-times"></i>
+        </a>
+
+        <ul class="mfb-component__list">
+          <li>
+            <a href="#" @click="onEdit" data-mfb-label="Edition mode" class="mfb-component__button--child">
+              <i class="mfb-component__child-icon fa fa-pencil"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" @click="onAddNewComponent" data-mfb-label="Add new component" class="mfb-component__button--child">
+              <i class="mfb-component__child-icon fa fa-plus"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
     <modal v-show="showModal" v-model="showModal"></modal>
   </div>
 </template>
@@ -48,7 +67,7 @@
     components: components,
     data () {
       return {
-        editing: true,
+        editing: false,
         layout: testLayout,
         showModal: false
       }
@@ -57,6 +76,10 @@
     methods: {
       onEdit () {
         this.editing = !this.editing
+      },
+
+      onAddNewComponent () {
+        this.showModal = !this.showModal
       },
 
       onSave () {
@@ -78,10 +101,23 @@
     }
   }
 </script>
-<style>
+
+<style lang="scss">
+  @import '../static/styles';
+
+  html,
+  body,
+  #app,
+  .vue-grid-layout{
+    height: 100%;
+    min-height: 100%;
+  }
+
   body {
     font-family: 'Roboto', sans-serif;
+    margin: 0;
   }
+
   .vue-grid-item {
     background-color: gray;
   }
