@@ -4,8 +4,8 @@
       :layout="layout"
       :col-num="12"
       :row-height="110"
-      :is-draggable="true"
-      :is-resizable="true"
+      :is-draggable="editing"
+      :is-resizable="editing"
       :vertical-compact="false"
       :margin="[10, 10]"
       :use-css-transforms="true"
@@ -18,7 +18,7 @@
         :w="item.w"
         :h="item.h"
         :i="item.i"
-        v-bind:class="{'editing': editing, 'not-editing': !editing}">
+        :class="[item.plugin + '-plugin', item.component + '-component', item.component + '-' + item.i + '-component', {'editing': editing, 'not-editing': !editing}]">
         <component :is="item.component" :config="item.config"></component>
       </grid-item>
     </grid-layout>
@@ -63,7 +63,20 @@
 //    projectId: 21563
 //  }
   let testLayout = [
-//    {'x': 0, 'y': 0, 'w': criticalReporterPlugin.defaultWidth, 'h': criticalReporterPlugin.defaultHeight, 'i': '0', component: criticalReporterPlugin.tag, config: sonarConfig}
+    {
+      'x': 0,
+      'y': 0,
+      'w': 1,
+      'h': 1,
+      'i': '0',
+      plugin: 'sonar',
+      component: 'critical-reporter',
+      config: {
+//        url: 'http://ic-sonar.sii-ouest.fr/sonar/api/resources?resource={projectId}&depth=0&format=json&metrics=critical_violations,major_violations,minor_violations,info_violations,blocker_violations',
+        host: 'http://ic-sonar.sii-ouest.fr',
+        projectId: 25559
+      }
+    }
   ]
 
   export default {
@@ -122,10 +135,6 @@
   body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-  }
-
-  .vue-grid-item {
-    background-color: gray;
   }
 
   h1 {
