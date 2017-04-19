@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h2>Plugins Manager</h2>
-        <span class="close" @click="close()">&times;</span>
+        <span class="close" @click="onClose">&times;</span>
       </div>
       <div class="modal-body">
         <div v-for="plugin in plugins">
@@ -27,27 +27,38 @@
 
   export default {
     props: ['value'],
-    data: function () {
+
+    data: () => {
       return {
         internalValue: '',
         plugins: {}
       }
     },
+
     watch: {
       'internalValue' () {
         this.$emit('input', false)
       }
     },
+
     created () {
       this.plugins = Plugins
       this.internalValue = this.value
     },
+
     methods: {
+
+      onClose () {
+        this.internalValue = !this.internalValue
+      }
+
     }
   }
 </script>
 
 <style lang="scss" scoped>
+  @import '../../static/abstract/color';
+
   .modal-container {
     display: flex;
     position: absolute;
@@ -71,7 +82,7 @@
 
   .modal-content {
     position: relative;
-    background-color: #fefefe;
+    background-color: #FEFEFE;
     margin: auto;
     padding: 0;
     width: 80%;
@@ -88,7 +99,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: $primary-color;
     color: white;
 
     span {
