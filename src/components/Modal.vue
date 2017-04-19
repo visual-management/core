@@ -10,7 +10,7 @@
         </div>
         <div class="content-component">
           <div v-for="subPlugin in plugin.components" class="component">
-            {{ subPlugin.name }}
+            {{ subPlugin.name }}
           </div>
         </div>
       </div>
