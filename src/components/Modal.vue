@@ -1,24 +1,27 @@
 <template>
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Plugins Manager</h2>
-      <span class="close" @click="close()">&times;</span>
-    </div>
-    <div class="modal-body">
-      <div v-for="plugin in plugins">
-        <div class="plugin-name">{{ plugin.name }}
-        </div>
-        <div class="content-component">
-          <div v-for="subPlugin in plugin.components" class="component">
-            {{ subPlugin.name }}
+  <div class="modal-container">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Plugins Manager</h2>
+        <span class="close" @click="close()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div v-for="plugin in plugins">
+          <div class="plugin-name">{{ plugin.name }}
+          </div>
+          <div class="content-component">
+            <div v-for="subPlugin in plugin.components" class="component">
+              {{ subPlugin.name }}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="modal-footer">
+      <div class="modal-footer">
+      </div>
     </div>
   </div>
 </template>
+
 <script>
   import { Plugins } from '../plugins'
 
@@ -43,7 +46,42 @@
     }
   }
 </script>
+
 <style lang="scss" scoped>
+  .modal-container {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &:before {
+      position: fixed;
+      top: 0;
+      left: 0;
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-color: lightgray;
+      z-index: -1;
+      opacity: 0.8;
+    }
+  }
+
+  .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+  }
+
   .modal-header {
     display: flex;
     flex-direction: row;
@@ -78,31 +116,6 @@
     background-color: #5cb85c;
     color: white;
     padding: 10px 0;
-  }
-
-  .modal-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-
-    &:before {
-      position: fixed;
-      top: 0;
-      left: 0;
-      content: '';
-      width: 100%;
-      height: 100%;
-      background-color: lightgray;
-      z-index: -1;
-      opacity: 0.8;
-    }
   }
 
   @-webkit-keyframes animatetop {
