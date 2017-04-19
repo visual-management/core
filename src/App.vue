@@ -32,15 +32,15 @@
 </template>
 
 <script>
-  import { components, plugins } from './app.module'
+  import { components } from './app.module'
 
-  let criticalReporterPlugin = plugins.getPluginById('sonar-plugin').getComponentByTag('critical-reporter')
-  let sonarConfig = {
-    url: 'http://ic-sonar.sii-ouest.fr/sonar/api/resources?resource={projectId}&depth=0&format=json&metrics=critical_violations,major_violations,minor_violations,info_violations,blocker_violations',
-    projectId: 21563
-  }
+//  let criticalReporterPlugin = plugins.getPluginById('sonar-plugin').getComponentByTag('critical-reporter')
+//  let sonarConfig = {
+//    url: 'http://ic-sonar.sii-ouest.fr/sonar/api/resources?resource={projectId}&depth=0&format=json&metrics=critical_violations,major_violations,minor_violations,info_violations,blocker_violations',
+//    projectId: 21563
+//  }
   let testLayout = [
-    {'x': 0, 'y': 0, 'w': criticalReporterPlugin.defaultWidth, 'h': criticalReporterPlugin.defaultHeight, 'i': '0', component: criticalReporterPlugin.tag, config: sonarConfig}
+//    {'x': 0, 'y': 0, 'w': criticalReporterPlugin.defaultWidth, 'h': criticalReporterPlugin.defaultHeight, 'i': '0', component: criticalReporterPlugin.tag, config: sonarConfig}
   ]
 
   export default {
