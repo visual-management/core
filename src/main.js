@@ -3,10 +3,12 @@
 import Vue from 'vue'
 import VueSocketio from 'vue-socket.io'
 import App from './App'
+import Modal from './components/Modal'
 
 Vue.config.productionTip = false
 // Connect to the WebSocket
 Vue.use(VueSocketio, 'http://localhost:9090')
+Vue.component('modal', Modal)
 
 /* eslint-disable no-new */
 new Vue({

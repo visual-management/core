@@ -1,0 +1,4 @@
+{
+  "install": "plugins",
+  "reference": "src/plugins.js"
+}

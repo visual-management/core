@@ -3,7 +3,7 @@ const app   = require('http').createServer(),
   mongoose  = require('mongoose'),
   config    = require('config'),
 
-  GridItem  = require('./schemas/grid-item');
+  Component  = require('./schemas/component');
 
 app.listen(9090);
 
@@ -12,13 +12,22 @@ io.on('connection', (socket) => {
   console.log('CONNECTED');
 
   // Emit grid on client's connection
-  GridItem.find().then((grid) => socket.emit('grid', grid));
+  Component.find().then((grid) => socket.emit('grid', grid));
 
   // Save the grid
-  socket.on('grid.save', (data) => {
-    GridItem.remove({})
-      .then(() => GridItem.create(data))
+  socket.on('component.saveAll', (data) => {
+    Component.remove({})
+      .then(() => Component.create(data))
       .catch((err) => console.error(err));
+  })
+
+  socket.on('component.saveConfig', (component, config) => {
+    console.log('component', component)
+    Component.find({ 'component': component}).then(c => {
+      console.log(c)
+    }).catch(err => {
+      console.error(err)
+    })
   })
 });
 

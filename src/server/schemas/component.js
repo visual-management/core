@@ -1,13 +1,14 @@
 const mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-const GridItem = new Schema({
+const Component = new Schema({
   i: String,
   x: Number,
   y: Number,
   w: Number,
   h: Number,
-  component: String
+  component: String,
+  config: Object
 });
 
-module.exports = mongoose.model('grid-items', GridItem);
+module.exports = mongoose.model('components', Component);

@@ -21,25 +21,49 @@
         v-bind:class="{'editing': editing, 'not-editing': !editing}">
         <component :is="item.component" :config="item.config"></component>
       </grid-item>
-
-      <div style="position: absolute; bottom: 0; right: 0; color: red; padding: 15px;">
-        <button @click="onEdit()">EDIT</button>
-        <button @click="onSave()" v-if="editing">SAVE</button>
-      </div>
     </grid-layout>
+
+    <ul class="mfb-component--br mfb-slidein" data-mfb-toggle="hover" data-mfb-state="closed" v-show="!editing">
+      <li class="mfb-component__wrap">
+        <a class="mfb-component__button--main">
+          <i class="mfb-component__main-icon--resting fa fa-bars"></i>
+          <i class="mfb-component__main-icon--active fa fa-times"></i>
+        </a>
+
+        <ul class="mfb-component__list">
+          <li>
+            <a @click="onEdit" data-mfb-label="Edition mode" class="mfb-component__button--child">
+              <i class="mfb-component__child-icon fa fa-pencil"></i>
+            </a>
+          </li>
+
+          <li>
+            <a @click="onAddNewComponent" data-mfb-label="Add new component" class="mfb-component__button--child">
+              <i class="mfb-component__child-icon fa fa-plus"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <a @click="onSave" class="save-btn mfb-component__button--main" v-show="editing">
+      <i class="mfb-component__main-icon--resting fa fa-floppy-o"></i>
+    </a>
+
+    <modal v-show="showModal" v-model="showModal"></modal>
   </div>
 </template>
 
 <script>
-  import { components, plugins } from './app.module'
+  import { components } from './app.module'
 
-  let criticalReporterPlugin = plugins.getPluginById('sonar-plugin').getComponentByTag('critical-reporter')
-  let sonarConfig = {
-    url: 'http://ic-sonar.sii-ouest.fr/sonar/api/resources?resource={projectId}&depth=0&format=json&metrics=critical_violations,major_violations,minor_violations,info_violations,blocker_violations',
-    projectId: 21563
-  }
+//  let criticalReporterPlugin = plugins.getPluginById('sonar-plugin').getComponentByTag('critical-reporter')
+//  let sonarConfig = {
+//    url: 'http://ic-sonar.sii-ouest.fr/sonar/api/resources?resource={projectId}&depth=0&format=json&metrics=critical_violations,major_violations,minor_violations,info_violations,blocker_violations',
+//    projectId: 21563
+//  }
   let testLayout = [
-    {'x': 0, 'y': 0, 'w': criticalReporterPlugin.defaultWidth, 'h': criticalReporterPlugin.defaultHeight, 'i': '0', component: criticalReporterPlugin.tag, config: sonarConfig}
+//    {'x': 0, 'y': 0, 'w': criticalReporterPlugin.defaultWidth, 'h': criticalReporterPlugin.defaultHeight, 'i': '0', component: criticalReporterPlugin.tag, config: sonarConfig}
   ]
 
   export default {
@@ -47,8 +71,9 @@
     components: components,
     data () {
       return {
-        editing: true,
-        layout: testLayout
+        editing: false,
+        layout: testLayout,
+        showModal: false
       }
     },
 
@@ -57,8 +82,12 @@
         this.editing = !this.editing
       },
 
+      onAddNewComponent () {
+        this.showModal = !this.showModal
+      },
+
       onSave () {
-        this.$socket.emit('grid.save', this.layout.map((item) => ({
+        this.$socket.emit('component.saveAll', this.layout.map((item) => ({
           i: item.i,
           x: item.x,
           y: item.y,
@@ -66,6 +95,8 @@
           h: item.h,
           component: item.component
         })))
+
+        this.editing = false
       }
     },
 
@@ -76,10 +107,23 @@
     }
   }
 </script>
-<style>
+
+<style lang="scss">
+  @import '../static/styles';
+
+  html,
+  body,
+  #app,
+  .vue-grid-layout{
+    height: 100%;
+    min-height: 100%;
+  }
+
   body {
     font-family: 'Roboto', sans-serif;
+    margin: 0;
   }
+
   .vue-grid-item {
     background-color: gray;
   }
@@ -91,6 +135,14 @@
     margin-top: 5px;
   }
 
+  .save-btn {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 25px;
+    z-index: 30;
+    background-color: $accent-color;
+  }
 
   .not-editing {
     pointer-events: none;
