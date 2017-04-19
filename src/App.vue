@@ -23,28 +23,32 @@
       </grid-item>
     </grid-layout>
 
-    <ul class="mfb-component--br mfb-slidein" data-mfb-toggle="hover" data-mfb-state="closed">
+    <ul class="mfb-component--br mfb-slidein" data-mfb-toggle="hover" data-mfb-state="closed" v-show="!editing">
       <li class="mfb-component__wrap">
-        <a href="#" class="mfb-component__button--main">
+        <a class="mfb-component__button--main">
           <i class="mfb-component__main-icon--resting fa fa-bars"></i>
           <i class="mfb-component__main-icon--active fa fa-times"></i>
         </a>
 
         <ul class="mfb-component__list">
           <li>
-            <a href="#" @click="onEdit" data-mfb-label="Edition mode" class="mfb-component__button--child">
+            <a @click="onEdit" data-mfb-label="Edition mode" class="mfb-component__button--child">
               <i class="mfb-component__child-icon fa fa-pencil"></i>
             </a>
           </li>
 
           <li>
-            <a href="#" @click="onAddNewComponent" data-mfb-label="Add new component" class="mfb-component__button--child">
+            <a @click="onAddNewComponent" data-mfb-label="Add new component" class="mfb-component__button--child">
               <i class="mfb-component__child-icon fa fa-plus"></i>
             </a>
           </li>
         </ul>
       </li>
     </ul>
+
+    <a @click="onSave" class="save-btn mfb-component__button--main" v-show="editing">
+      <i class="mfb-component__main-icon--resting fa fa-floppy-o"></i>
+    </a>
 
     <modal v-show="showModal" v-model="showModal"></modal>
   </div>
@@ -91,6 +95,8 @@
           h: item.h,
           component: item.component
         })))
+
+        this.editing = false
       }
     },
 
@@ -129,6 +135,14 @@
     margin-top: 5px;
   }
 
+  .save-btn {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 25px;
+    z-index: 30;
+    background-color: $accent-color;
+  }
 
   .not-editing {
     pointer-events: none;
