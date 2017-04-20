@@ -1,6 +1,6 @@
 <template>
-  <div class="modal-container">
-    <div class="modal-content">
+  <div class="modal-container" @click="close()">
+    <div class="modal-content" v-on:click.stop="">
       <div class="modal-header">
         <h2>Plugins Manager</h2>
         <span class="close" @click="close()">&times;</span>
@@ -53,12 +53,21 @@
 
     methods: {
       close () {
+        this.editor = false
+        this.showPlugin = true
         this.internalValue = !this.internalValue
       },
       showEditor (config) {
         this.editor = true
         this.showPlugin = false
         this.$refs.editor.innerHTML = JSON.stringify(config)
+      },
+      test (e) {
+        if (e.target !== this) {
+          console.log('ca marche')
+        } else {
+          console.log('coucou')
+        }
       }
     }
   }
