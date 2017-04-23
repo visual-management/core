@@ -61,13 +61,6 @@
         this.editor = true
         this.showPlugin = false
         this.$refs.editor.innerHTML = JSON.stringify(config)
-      },
-      test (e) {
-        if (e.target !== this) {
-          console.log('ca marche')
-        } else {
-          console.log('coucou')
-        }
       }
     }
   }
