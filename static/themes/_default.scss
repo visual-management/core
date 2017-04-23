@@ -2,10 +2,28 @@
 //  Theme - Default
 //----------------------------------------
 
-@import url('https://fonts.googleapis.com/css?family=Product+Sans');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
+//  Colors
+//----------------------------------------
+
+@import '../abstract/color';
+
+//  Floating Action button
+//----------------------------------------
+
+$main-color: $primary-color;
+$bright-text: $primary-color-text;
+
+//  Core
+//----------------------------------------
+
+body {
+  background-color: #F0F0F0;
+}
+
 .vue-grid-item {
+  overflow: hidden;
   background-color: $primary-color;
 
   * {
@@ -23,14 +41,18 @@
   }
 }
 
-//  Sonar
+.sonar-plugin .critical-reporter-component span,
+.clock-plugin {
+  font-family: 'Roboto Mono', 'Roboto', sans-serif;
+}
+
+//  Clock
 //----------------------------------------
 
-.sonar-plugin {
+.clock-plugin {
 
-  &.critical-reporter-component span {
-    font-family: 'Roboto Mono', 'Roboto', sans-serif;
-    font-size: 45px;
+  & .clock-day {
+    color: $primary-text-color;
   }
 
 }
