@@ -2,8 +2,8 @@
   <div id="app">
     <grid-layout
       :layout="layout"
-      :col-num="12"
-      :row-height="110"
+      :col-num="24"
+      :row-height="70"
       :is-draggable="editing"
       :is-resizable="editing"
       :vertical-compact="false"
