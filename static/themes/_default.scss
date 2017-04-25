@@ -39,9 +39,13 @@ body {
     font-weight: 500;
     text-transform: uppercase;
   }
+
+  & .has-error {
+    background-color: $accent-color;
+  }
 }
 
-.sonar-plugin .critical-reporter-component span,
+.sonar-plugin.resource-reporter-component .val,
 .clock-plugin {
   font-family: 'Roboto Mono', 'Roboto', sans-serif;
 }
