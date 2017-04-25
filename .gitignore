@@ -3,10 +3,10 @@ logs
 
 # Dependency directories
 node_modules
-plugins
 
 # WebStorm
 .idea/
 
 # Tests
 tmp/
+src/plugin
