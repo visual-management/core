@@ -11,15 +11,16 @@
             {{ plugin.name }}
           </div>
           <div class="content-component">
-            <div v-for="subPlugin in plugin.components" class="component" @click="showEditor(subPlugin.config)">
+            <div v-for="subPlugin in plugin.components" class="component" @click="showEditor(subPlugin)">
               {{ subPlugin.name }}
             </div>
           </div>
         </div>
-        <textarea ref="editor" v-show="editor">
+        <textarea v-model="editorContent" v-show="editor">
         </textarea>
       </div>
       <div class="modal-footer">
+        <button @click="save()" v-show="editor">Save</button>
       </div>
     </div>
   </div>
@@ -36,7 +37,9 @@
         internalValue: '',
         plugins: {},
         editor: false,
-        showPlugin: true
+        editorContent: '',
+        showPlugin: true,
+        currentPlugin: null
       }
     },
 
@@ -57,10 +60,15 @@
         this.showPlugin = true
         this.internalValue = !this.internalValue
       },
-      showEditor (config) {
+      showEditor (p) {
         this.editor = true
         this.showPlugin = false
-        this.$refs.editor.innerHTML = JSON.stringify(config)
+        this.currentPlugin = p
+        this.editorContent = JSON.stringify(p.config)
+      },
+      save () {
+        this.currentPlugin.config = JSON.parse(this.editorContent)
+        this.$socket.emit('component.save', this.currentPlugin)
       }
     }
   }
@@ -134,7 +142,7 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      background-color: #5cb85c;
+      background-color: $primary-color;
       color: white;
       padding: 10px 0;
     }

@@ -12,7 +12,9 @@ io.on('connection', (socket) => {
   console.log('CONNECTED');
 
   // Emit grid on client's connection
-  Component.find().then((grid) => socket.emit('grid', grid));
+  Component.find().then((grid) => {
+    socket.emit('grid', grid)
+  });
 
   // Save the grid
   socket.on('component.saveAll', (data) => {
@@ -21,13 +23,22 @@ io.on('connection', (socket) => {
       .catch((err) => console.error(err));
   })
 
-  socket.on('component.saveConfig', (component, config) => {
-    console.log('component', component)
-    Component.find({ 'component': component}).then(c => {
-      console.log(c)
-    }).catch(err => {
-      console.error(err)
-    })
+  socket.on('component.save', (component) => {
+    const c = new Component({
+      x: 0,
+      y: 0,
+      w: component.defaultWidth || 5,
+      h: component.defaultHeight || 5,
+      component: component.tag,
+      config: component.config
+    });
+
+    c.save()
+      .then(err => {
+      if (err) {
+        console.log(err);
+      }
+    });
   })
 });
 

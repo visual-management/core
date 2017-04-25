@@ -57,35 +57,13 @@
 <script>
   import { components } from './app.module'
 
-//  let criticalReporterPlugin = plugins.getPluginById('sonar-plugin').getComponentByTag('critical-reporter')
-//  let sonarConfig = {
-//    url: 'http://ic-sonar.sii-ouest.fr/sonar/api/resources?resource={projectId}&depth=0&format=json&metrics=critical_violations,major_violations,minor_violations,info_violations,blocker_violations',
-//    projectId: 21563
-//  }
-  let testLayout = [
-    {
-      'x': 0,
-      'y': 0,
-      'w': 1,
-      'h': 1,
-      'i': '0',
-      plugin: 'sonar',
-      component: 'critical-reporter',
-      config: {
-//        url: 'http://ic-sonar.sii-ouest.fr/sonar/api/resources?resource={projectId}&depth=0&format=json&metrics=critical_violations,major_violations,minor_violations,info_violations,blocker_violations',
-        host: 'http://ic-sonar.sii-ouest.fr',
-        projectId: 25559
-      }
-    }
-  ]
-
   export default {
     name: 'app',
     components: components,
     data () {
       return {
         editing: false,
-        layout: testLayout,
+        layout: [],
         showModal: false
       }
     },

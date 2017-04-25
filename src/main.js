@@ -19,7 +19,7 @@ new Vue({
     connect () {
       console.log('Socket connected')
 
-      // this.$socket.on('grid', (data) => console.log(data));
+      this.$socket.on('grid', (data) => console.log(data))
     }
   }
 })
