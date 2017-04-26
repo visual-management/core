@@ -60,3 +60,16 @@ body {
   }
 
 }
+
+//  Jenkins
+//----------------------------------------
+
+.jenkins-plugin .blue { background-color: $primary-color !important; }
+.jenkins-plugin .blue.blink { animation-name : primary-blink !important; }
+
+@-webkit-keyframes primary-blink {
+  0%   { background-color: $primary-color; }
+  33%  { background-color: darken($primary-color, 15%); }
+  66%  { background-color: darken($primary-color, 15%); }
+  100% { background-color: $primary-color; }
+}
