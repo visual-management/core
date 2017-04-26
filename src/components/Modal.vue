@@ -16,7 +16,7 @@
             </div>
           </div>
         </div>
-        <textarea v-model="editorContent" v-show="editor">
+        <textarea class="editor" v-model="editorContent" v-show="editor">
         </textarea>
       </div>
       <div class="modal-footer">
@@ -64,7 +64,7 @@
         this.editor = true
         this.showPlugin = false
         this.currentPlugin = p
-        this.editorContent = JSON.stringify(p.config)
+        this.editorContent = JSON.stringify(p.config, null, 2)
       },
       save () {
         this.currentPlugin.config = JSON.parse(this.editorContent)
@@ -135,6 +135,11 @@
       .content-component {
         margin-left: 30px;
         cursor: pointer;
+      }
+
+      .editor {
+        width: 99%;
+        height: 50vh;
       }
     }
 
