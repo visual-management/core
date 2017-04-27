@@ -20,7 +20,7 @@
         </editor>
       </div>
       <div class="modal-footer">
-        <button @click="save()" v-show="editor">Save</button>
+        <button @click="onSave()" v-show="editor">Save</button>
       </div>
     </div>
   </div>
@@ -53,13 +53,24 @@
         this.$emit('input', false)
       },
       showEditor (p) {
-        this.editor = true
-        this.showPlugin = false
         this.currentPlugin = p
-        this.editorContent = JSON.stringify(p.config, null, 2)
+
+        // check if a component has a config to set
+        if (p.config) {
+          this.editor = true
+          this.showPlugin = false
+          this.editorContent = JSON.stringify(p.config, null, 2)
+        } else {
+          this._save()
+          this.$emit('input', false)
+        }
       },
-      save () {
+      onSave () {
         this.currentPlugin.config = JSON.parse(this.editorContent)
+        this._save()
+      },
+
+      _save () {
         this.$socket.emit('component.save', this.currentPlugin)
       }
     }

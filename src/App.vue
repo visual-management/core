@@ -93,7 +93,6 @@
       },
 
       toggleModal () {
-        console.log('couucou')
         this.showModal = !this.showModal
       }
     },
