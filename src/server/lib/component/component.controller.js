@@ -18,6 +18,7 @@ class ComponentController {
       y: 0,
       w: data.defaultWidth || 5,
       h: data.defaultHeight || 5,
+      plugin: data.plugin,
       component: data.tag,
       config: data.config
     });

@@ -15,7 +15,7 @@
           </div>
 
           <div class="content-component">
-            <div v-for="subPlugin in plugin.components" class="component" @click="showEditor(subPlugin)">
+            <div v-for="subPlugin in plugin.components" class="component" @click="showEditor(plugin, subPlugin)">
               {{ subPlugin.name }}
             </div>
           </div>
@@ -56,14 +56,15 @@
         this.showPlugin = true
         this.$emit('input', false)
       },
-      showEditor (p) {
-        this.currentPlugin = p
+      showEditor (plugin, component) {
+        this.currentPlugin = component
+        this.currentPlugin.plugin = plugin.id
 
         // check if a component has a config to set
-        if (p.config) {
+        if (component.config) {
           this.editor = true
           this.showPlugin = false
-          this.editorContent = JSON.stringify(p.config, null, 2)
+          this.editorContent = JSON.stringify(component.config, null, 2)
         } else {
           this._save()
           this.$emit('input', false)
@@ -71,6 +72,7 @@
       },
       onSave () {
         this.currentPlugin.config = JSON.parse(this.editorContent)
+
         this._save()
       },
 

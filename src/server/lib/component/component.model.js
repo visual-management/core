@@ -7,6 +7,7 @@ const Component = new Schema({
   y: Number,
   w: Number,
   h: Number,
+  plugin: String,
   component: String,
   config: Object
 });
