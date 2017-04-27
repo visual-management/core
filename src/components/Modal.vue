@@ -9,8 +9,15 @@
         <div v-for="plugin in plugins" v-show="showPlugin">
           <div class="plugin-name">
             {{ plugin.name }}
+            <div class="plugin-description">
+              {{ plugin.description }}
+            </div>
           </div>
+
           <div class="content-component">
+            <div v-for="subPlugin in plugin.components" class="component" @click="showEditor(subPlugin)">
+              {{ subPlugin.name }}
+            </div>
             <div v-for="subPlugin in plugin.components" class="component" @click="showEditor(subPlugin)">
               {{ subPlugin.name }}
             </div>
@@ -106,7 +113,8 @@
     background-color: #FEFEFE;
     margin: auto;
     padding: 0;
-    width: 80%;
+    width: 30%;
+    min-width: 600px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -118,7 +126,7 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      padding: 2px 16px;
+      padding: 2px 24px;
       background-color: $primary-color;
       color: white;
 
@@ -129,15 +137,37 @@
     }
 
     .modal-body {
-      padding: 2px 16px;
       background-color: white;
       display: block;
-      max-height: 55vh;
+      max-height: 40vh;
       overflow: auto;
+      padding: 24px;
 
-      .content-component {
-        margin-left: 30px;
+
+      .plugin-name {
+        color: $primary-color;
+        display: flex;
+        font-weight: bold;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 8px 0;
+        .plugin-description {
+          color: darkgrey;
+          font-size: 0.8em;
+          font-weight: normal;
+        }
+      }
+
+      .component {
         cursor: pointer;
+        padding: 8px 15px;
+        font-size: 0.95em;
+        color: $primary-text-color;
+
+        &:hover {
+          background-color: $primary-color-light;
+          color: $primary-color-text;
+        }
       }
     }
 
