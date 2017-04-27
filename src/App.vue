@@ -50,7 +50,9 @@
       <i class="mfb-component__main-icon--resting fa fa-floppy-o"></i>
     </a>
 
-    <modal v-show="showModal" v-model="showModal"></modal>
+    <modal v-show="showModal"
+           :value="showModal"
+           @input="toggleModal()"></modal>
   </div>
 </template>
 
@@ -88,6 +90,11 @@
         })))
 
         this.editing = false
+      },
+
+      toggleModal () {
+        console.log('couucou')
+        this.showModal = !this.showModal
       }
     },
 

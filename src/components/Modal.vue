@@ -42,12 +42,6 @@
       }
     },
 
-    watch: {
-      'internalValue' () {
-        this.$emit('input', false)
-      }
-    },
-
     created () {
       this.plugins = Plugins
     },
@@ -56,7 +50,7 @@
       close () {
         this.editor = false
         this.showPlugin = true
-        this.modal = false
+        this.$emit('input', false)
       },
       showEditor (p) {
         this.editor = true
