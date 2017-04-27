@@ -16,8 +16,8 @@
             </div>
           </div>
         </div>
-        <textarea class="editor" v-model="editorContent" v-show="editor">
-        </textarea>
+        <editor class="editor" v-model="editorContent" v-show="editor">
+        </editor>
       </div>
       <div class="modal-footer">
         <button @click="save()" v-show="editor">Save</button>
@@ -34,7 +34,6 @@
 
     data: () => {
       return {
-        internalValue: '',
         plugins: {},
         editor: false,
         editorContent: '',
@@ -51,14 +50,13 @@
 
     created () {
       this.plugins = Plugins
-      this.internalValue = this.value
     },
 
     methods: {
       close () {
         this.editor = false
         this.showPlugin = true
-        this.internalValue = !this.internalValue
+        this.modal = false
       },
       showEditor (p) {
         this.editor = true
@@ -135,11 +133,6 @@
       .content-component {
         margin-left: 30px;
         cursor: pointer;
-      }
-
-      .editor {
-        width: 99%;
-        height: 50vh;
       }
     }
 
