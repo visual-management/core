@@ -18,16 +18,13 @@
             <div v-for="subPlugin in plugin.components" class="component" @click="showEditor(subPlugin)">
               {{ subPlugin.name }}
             </div>
-            <div v-for="subPlugin in plugin.components" class="component" @click="showEditor(subPlugin)">
-              {{ subPlugin.name }}
-            </div>
           </div>
         </div>
         <editor class="editor" v-model="editorContent" v-show="editor">
         </editor>
       </div>
       <div class="modal-footer">
-        <button @click="onSave()" v-show="editor">Save</button>
+        <button @click="onSave()" v-show="editor" class="material-button raised">Save</button>
       </div>
     </div>
   </div>
@@ -87,6 +84,7 @@
 <style lang="scss" scoped>
   @import '../../static/abstract/color';
 
+
   .modal-container {
     display: flex;
     position: absolute;
@@ -120,6 +118,7 @@
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
+    font-family: Roboto;
 
     .modal-header {
       display: flex;
@@ -142,6 +141,8 @@
       max-height: 40vh;
       overflow: auto;
       padding: 24px;
+
+
 
 
       .plugin-name {
