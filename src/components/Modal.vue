@@ -24,7 +24,7 @@
         </editor>
       </div>
       <div class="modal-footer">
-        <button @click="onSave()" v-show="editor" class="material-button raised">Save</button>
+        <button @click="onSave()" v-show="editor" class="material-button primary">Save</button>
       </div>
     </div>
   </div>
@@ -174,11 +174,12 @@
 
     .modal-footer {
       display: flex;
-      justify-content: space-around;
+      justify-content: flex-end;
+      margin: 0 10px;
       align-items: center;
-      background-color: $primary-color;
+      //background-color: $primary-color;
       color: white;
-      padding: 10px 0;
+      padding-bottom: 10px;
     }
 
     .hidden {
