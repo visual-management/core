@@ -100,6 +100,12 @@
     sockets: {
       grid (data) {
         this.layout = data
+      },
+
+      componentCreated (component) {
+        this.layout.push(component)
+
+        this.showModal = false
       }
     }
   }

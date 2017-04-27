@@ -3,43 +3,28 @@ const app   = require('http').createServer(),
   mongoose  = require('mongoose'),
   config    = require('config'),
 
-  Component  = require('./schemas/component');
+  Component  = require('./lib/component/component.model'),
+  ComponentController = require('./lib/component/component.controller');
 
 app.listen(9090);
 
 // Socket.IO
 io.on('connection', (socket) => {
-  console.log('CONNECTED');
+  console.log('Client connected');
 
   // Emit grid on client's connection
   Component.find().then((grid) => {
-    socket.emit('grid', grid)
+    socket.emit('grid', grid.map((item) => {
+      item.i = item._id;
+
+      return item;
+    }))
   });
 
-  // Save the grid
-  socket.on('component.saveAll', (data) => {
-    Component.remove({})
-      .then(() => Component.create(data))
-      .catch((err) => console.error(err));
-  })
+  const componentController = new ComponentController(socket);
 
-  socket.on('component.save', (component) => {
-    const c = new Component({
-      x: 0,
-      y: 0,
-      w: component.defaultWidth || 5,
-      h: component.defaultHeight || 5,
-      component: component.tag,
-      config: component.config
-    });
-
-    c.save()
-      .then(err => {
-      if (err) {
-        console.log(err);
-      }
-    });
-  })
+  socket.on('component.saveAll', (data) => componentController.saveAll(data));
+  socket.on('component.save', (component) => componentController.save(component));
 });
 
 // MongoDB
@@ -51,4 +36,3 @@ if (config.has('MONGODB.USERNAME') && config.has('MONGODB.PASSWORD')) {
 // Use native promises for Mongoose
 mongoose.Promise = global.Promise;
 mongoose.connect(uri);
-
