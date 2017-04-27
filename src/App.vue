@@ -80,13 +80,12 @@
       },
 
       onSave () {
-        this.$socket.emit('component.saveAll', this.layout.map((item) => ({
-          i: item.i,
+        this.$socket.emit('component.update-all', this.layout.map((item) => ({
+          _id: item._id,
           x: item.x,
           y: item.y,
           w: item.w,
-          h: item.h,
-          component: item.component
+          h: item.h
         })))
 
         this.editing = false

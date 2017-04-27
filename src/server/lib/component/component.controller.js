@@ -6,10 +6,10 @@ class ComponentController {
     this.socket = socket;
   }
 
-  saveAll (data) {
-    Component.remove({})
-      .then(() => Component.create(data))
-      .catch((err) => console.error(err));
+  updateAll (data) {
+    data.forEach(async (item) => {
+      await Component.update({ _id: item._id }, { $set: item })
+    });
   }
 
   save (data) {
