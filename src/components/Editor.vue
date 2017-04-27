@@ -23,7 +23,7 @@
   .editor {
     textarea {
       width: 99%;
-      height: 50vh;
+      height: 39vh;
     }
   }
 </style>
