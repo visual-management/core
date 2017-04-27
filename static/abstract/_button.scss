@@ -1,0 +1,25 @@
+@import './color';
+
+.material-button {
+  height: 36px;
+  margin: 8px;
+  border:none;
+  background: none;
+  cursor: pointer;
+  font-family: Roboto;
+
+  &.raised {
+    background-color: $raised-color;
+    color: $primary-color-text;
+    border-radius: 2px;
+    padding: 0px 16px;
+    min-width: 64px;
+    text-transform: uppercase;
+    font-weight: 500;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+  }
+
+  &.flat {
+    color: $primary-color;
+  }
+}
