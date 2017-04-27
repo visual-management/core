@@ -2,10 +2,9 @@
   "name": "visual-management",
   "version": "0.0.1",
   "description": "Visual Management",
-  "author": "Kevin Grandemange <kevin@kevingrandemange.net>",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
+    "start": "node build/dev-server.js",
     "start:server": "node src/server/index.js",
     "start:server:vgo": "NODE_ENV=vgo node src/server/index.js",
     "build": "node build/build.js",
@@ -13,6 +12,11 @@
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs"
   },
+  "contributors": [
+    "Valentin Got <gotvalentin@gmail.com>",
+    "Olivier Le Lay <liollury@gmail.com>",
+    "Kevin Grandemange <kevin@kevingrandemange.net>"
+  ],
   "dependencies": {
     "font-awesome": "^4.7.0",
     "mfb": "^0.12.0",
