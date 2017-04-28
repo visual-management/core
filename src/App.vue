@@ -28,20 +28,20 @@
     <ul class="mfb-component--br mfb-slidein" data-mfb-toggle="hover" data-mfb-state="closed" v-show="!editing">
       <li class="mfb-component__wrap">
         <a class="mfb-component__button--main">
-          <i class="mfb-component__main-icon--resting fa fa-bars"></i>
-          <i class="mfb-component__main-icon--active fa fa-times"></i>
+          <i class="mfb-component__main-icon--resting material-icons">menu</i>
+          <i class="mfb-component__main-icon--active material-icons">close</i>
         </a>
 
         <ul class="mfb-component__list">
           <li>
             <a @click="onEdit" data-mfb-label="Edition mode" class="mfb-component__button--child">
-              <i class="mfb-component__child-icon fa fa-pencil"></i>
+              <i class="mfb-component__child-icon material-icons">edit</i>
             </a>
           </li>
 
           <li>
             <a @click="onAddNewComponent" data-mfb-label="Add new component" class="mfb-component__button--child">
-              <i class="mfb-component__child-icon fa fa-plus"></i>
+              <i class="mfb-component__child-icon material-icons">add</i>
             </a>
           </li>
         </ul>

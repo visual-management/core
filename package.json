@@ -18,7 +18,6 @@
     "Kevin Grandemange <kevin@kevingrandemange.net>"
   ],
   "dependencies": {
-    "font-awesome": "^4.7.0",
     "mfb": "^0.12.0",
     "vue": "^2.2.2",
     "vue-grid-layout": "^2.1.0",
