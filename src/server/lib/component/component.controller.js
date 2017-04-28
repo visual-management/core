@@ -12,6 +12,12 @@ class ComponentController {
     });
   }
 
+  removeOne (data) {
+    return Component.remove({ _id: data._id }).then(() => {
+      this.socket.emit('componentDeleted', data);
+    }).catch(err => console.log(err));
+  }
+
   save (data) {
     const component = new Component({
       x: 0,

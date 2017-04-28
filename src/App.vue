@@ -12,6 +12,7 @@
     >
       <grid-item
         v-for="item in layout"
+        v-if="!item.toDelete"
         :key="item.i"
         :x="item.x"
         :y="item.y"
@@ -19,6 +20,7 @@
         :h="item.h"
         :i="item.i"
         :class="[item.plugin + '-plugin', item.component + '-component', item.component + '-' + item.i + '-component', {'editing': editing, 'not-editing': !editing}]">
+        <button style="position:fixed; top: 10px; right: 10px;cursor: pointer" @click="onDelete(item)" v-show="editing">X</button>
         <component :is="item.component" :config="item.config"></component>
       </grid-item>
     </grid-layout>
@@ -88,7 +90,15 @@
           h: item.h
         })))
 
+        this.layout.filter((item) => item.toDelete).forEach((itemToDelete) => {
+          this.$socket.emit('component.remove', itemToDelete)
+        })
+
         this.editing = false
+      },
+
+      onDelete (itemToDelete) {
+        itemToDelete.toDelete = true
       },
 
       toggleModal () {
@@ -98,13 +108,21 @@
 
     sockets: {
       grid (data) {
-        this.layout = data
+        this.layout = data.map((item) => {
+          item.toDelete = false
+          return item
+        })
       },
 
       componentCreated (component) {
+        component.toDelete = false
         this.layout.push(component)
 
         this.showModal = false
+      },
+
+      componentDeleted (component) {
+        this.layout = this.layout.filter((item) => item._id !== component._id)
       }
     }
   }

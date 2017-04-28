@@ -25,6 +25,7 @@ io.on('connection', (socket) => {
 
   socket.on('component.update-all', (data) => componentController.updateAll(data));
   socket.on('component.save', (component) => componentController.save(component));
+  socket.on('component.remove', (component) => componentController.removeOne(component));
 });
 
 // MongoDB
