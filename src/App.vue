@@ -49,7 +49,7 @@
     </ul>
 
     <a @click="onSave" class="save-btn mfb-component__button--main" v-show="editing">
-      <i class="mfb-component__main-icon--resting fa fa-floppy-o"></i>
+      <i class="mfb-component__main-icon--resting material-icons">save</i>
     </a>
 
     <modal v-show="showModal"
