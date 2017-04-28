@@ -1,29 +1,44 @@
 <template>
   <div class="editor">
-    <textarea v-bind:value="value"
-              v-on:input="updateValue($event.target.value)">
+    <div
+         id="code-editor"
+         data-language="javascript">
       {{ value }}
-    </textarea>
+    </div>
   </div>
 </template>
 
 <script>
+  /* global CodeFlask */
   export default {
     props: ['value'],
 
-    methods: {
-      updateValue (value) {
-        this.$emit('input', value)
+    mounted () {
+      this.flask = new CodeFlask()
+      this.flask.run('#code-editor', { language: 'json', lineNumbers: true })
+      this.flask.onUpdate((code) => {
+        this.value = code
+        this.$emit('input', this.value)
+      })
+    },
+
+    watch: {
+      value (value) {
+        this.flask.update(value)
       }
+    },
+
+    methods: {
+
     }
   }
 </script>
 
 <style lang="scss" scoped>
   .editor {
-    textarea {
+    #code-editor {
       width: 99%;
-      height: 39vh;
+      height: 25vh;
     }
   }
 </style>
