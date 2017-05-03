@@ -6,11 +6,16 @@
   "license": "MIT",
   "contributors": [
     "Olivier Le Lay",
-    "Valentin Got <gotvalentin@gmail.com>"
+    "Valentin Got <gotvalentin@gmail.com>",
+    "Kevin Grandemange <kevin@kevingrandemange.net>"
   ],
   "dependencies": {
     "config": "^1.25.1",
     "mongoose": "^4.8.1",
     "socket.io": "^1.7.2"
+  },
+  "engines": {
+    "node": "7.9.0 ",
+    "npm": "4.2.0"
   }
 }
