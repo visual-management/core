@@ -21,7 +21,7 @@
         :i="item.i"
         :class="[item.plugin + '-plugin', item.component + '-component', item.component + '-' + item.i + '-component', {'editing': editing, 'not-editing': !editing}]">
         <button style="position:fixed; top: 10px; right: 10px;cursor: pointer" @click="onDelete(item)" v-show="editing">X</button>
-        <button style="position:fixed; top: 30px; right: 10px;cursor: pointer" @click="onEditItem(item)" v-show="editing">edit</button>
+        <button style="position:fixed; top: 30px; right: 10px;cursor: pointer" @click="onEditItem(item)" v-show="editing && item.config">edit</button>
         <component :is="item.component" :config="item.config"></component>
       </grid-item>
     </grid-layout>
