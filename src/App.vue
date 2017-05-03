@@ -21,6 +21,7 @@
         :i="item.i"
         :class="[item.plugin + '-plugin', item.component + '-component', item.component + '-' + item.i + '-component', {'editing': editing, 'not-editing': !editing}]">
         <button style="position:fixed; top: 10px; right: 10px;cursor: pointer" @click="onDelete(item)" v-show="editing">X</button>
+        <button style="position:fixed; top: 30px; right: 10px;cursor: pointer" @click="onEditItem(item)" v-show="editing">edit</button>
         <component :is="item.component" :config="item.config"></component>
       </grid-item>
     </grid-layout>
@@ -53,8 +54,9 @@
     </a>
 
     <modal v-show="showModal"
-           :value="showModal"
-           @input="toggleModal()"></modal>
+           :value="hideModal"
+           :item="editItem"
+           @input="hideModal()"></modal>
   </div>
 </template>
 
@@ -67,6 +69,7 @@
     data () {
       return {
         editing: false,
+        editItem: null,
         layout: [],
         showModal: false
       }
@@ -101,8 +104,14 @@
         itemToDelete.toDelete = true
       },
 
-      toggleModal () {
-        this.showModal = !this.showModal
+      onEditItem (item) {
+        this.editItem = item
+        this.showModal = true
+      },
+
+      hideModal () {
+        this.editItem = null
+        this.showModal = false
       }
     },
 
@@ -118,6 +127,11 @@
         component.toDelete = false
         this.layout.push(component)
 
+        this.showModal = false
+      },
+
+      componentUpdated (component) {
+        component.toDelete = false
         this.showModal = false
       },
 

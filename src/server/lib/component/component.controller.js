@@ -6,6 +6,16 @@ class ComponentController {
     this.socket = socket;
   }
 
+  update (item) {
+    const id = item._id;
+    delete item._id;
+    Component.update({ _id: id }, { $set: item })
+      .then(() => {
+        this.socket.emit('componentUpdated', item);
+      })
+      .catch(err=> console.err(result))
+  }
+
   updateAll (data) {
     data.forEach(async (item) => {
       await Component.update({ _id: item._id }, { $set: item })
@@ -15,7 +25,7 @@ class ComponentController {
   removeOne (data) {
     return Component.remove({ _id: data._id }).then(() => {
       this.socket.emit('componentDeleted', data);
-    }).catch(err => console.log(err));
+    }).catch(err => console.error(err));
   }
 
   save (data) {

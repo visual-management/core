@@ -34,7 +34,7 @@
   import { Plugins } from '../plugins'
 
   export default {
-    props: ['value'],
+    props: ['value', 'item'],
 
     data: () => {
       return {
@@ -50,12 +50,27 @@
       this.plugins = Plugins
     },
 
+    watch: {
+      item () {
+        if (this.item !== null) {
+          this.currentPlugin = this.item
+          this.editorContent = JSON.stringify(this.currentPlugin.config, null, 2)
+          this.editor = true
+          this.showPlugin = false
+        } else {
+          this.editorContent = false
+          this.showPlugin = true
+        }
+      }
+    },
+
     methods: {
       close () {
         this.editor = false
         this.showPlugin = true
         this.$emit('input', false)
       },
+
       showEditor (plugin, component) {
         this.currentPlugin = component
         this.currentPlugin.plugin = plugin.id
@@ -70,10 +85,18 @@
           this.$emit('input', false)
         }
       },
+
       onSave () {
         this.currentPlugin.config = JSON.parse(this.editorContent)
 
-        this._save()
+        // if we are in edit mode
+        // update the plugin
+        if (this.currentPlugin._id) {
+          this.$socket.emit('component.update', this.currentPlugin)
+        } else {
+          // add new plugin
+          this._save()
+        }
       },
 
       _save () {

@@ -23,6 +23,7 @@ io.on('connection', (socket) => {
 
   const componentController = new ComponentController(socket);
 
+  socket.on('component.update', (data) => componentController.update(data));
   socket.on('component.update-all', (data) => componentController.updateAll(data));
   socket.on('component.save', (component) => componentController.save(component));
   socket.on('component.remove', (component) => componentController.removeOne(component));
