@@ -107,6 +107,7 @@
       onEditItem (item) {
         this.editItem = item
         this.showModal = true
+        this.editing = false
       },
 
       hideModal () {
