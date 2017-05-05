@@ -9,6 +9,7 @@ class ComponentController {
   update (item) {
     const id = item._id;
     delete item._id;
+
     Component.update({ _id: id }, { $set: item })
       .then(() => {
         this.socket.emit('componentUpdated', item);
@@ -18,7 +19,10 @@ class ComponentController {
 
   updateAll (data) {
     data.forEach(async (item) => {
-      await Component.update({ _id: item._id }, { $set: item })
+      const id = item._id;
+      delete item._id;
+
+      await Component.update({ _id: id }, { $set: item })
     });
   }
 
