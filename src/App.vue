@@ -176,7 +176,7 @@
   }
 
   .not-editing {
-    pointer-events: none;
+    /*pointer-events: none;*/
   }
 
   .not-editing > .vue-resizable-handle {
