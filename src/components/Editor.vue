@@ -11,6 +11,7 @@
 <script>
   /* global CodeFlask */
   export default {
+    name: 'editor',
     props: ['value'],
 
     mounted () {

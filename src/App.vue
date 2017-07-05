@@ -59,13 +59,15 @@
            @input="hideModal()"></modal>
   </div>
 </template>
-
 <script>
   import { components } from './app.module'
+  import Modal from './components/Modal.vue'
 
   export default {
     name: 'app',
-    components: components,
+    components: Object.assign({
+      'modal': Modal
+    }, components),
     data () {
       return {
         editing: false,

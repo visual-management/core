@@ -32,10 +32,14 @@
 
 <script>
   import { Plugins } from '../plugins'
+  import Editor from './Editor'
 
   export default {
+    name: 'modal',
+    components: {
+      'editor': Editor
+    },
     props: ['value', 'item'],
-
     data: () => {
       return {
         plugins: {},
