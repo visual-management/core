@@ -4,6 +4,9 @@
   "description": "Small server for the visual management",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  }
   "contributors": [
     "Olivier Le Lay",
     "Valentin Got <gotvalentin@gmail.com>",
