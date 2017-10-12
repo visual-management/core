@@ -4,15 +4,10 @@
 
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
-//  Colors
-//----------------------------------------
-
-@import '../abstract/color';
-
 //  Floating Action button
 //----------------------------------------
 
-$main-color: $primary-color;
+$main-color: $accent-color;
 $bright-text: $primary-color-text;
 
 //  Core
