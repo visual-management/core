@@ -1,4 +1,4 @@
-@import './color';
+@import '../abstract/color';
 
 .material-button {
   height: 36px;
@@ -9,7 +9,7 @@
   font-family: Roboto;
   outline: none;
   border-radius: 2px;
-  padding: 0px 16px;
+  padding: 0 16px;
   min-width: 64px;
   text-transform: uppercase;
   font-weight: 500;
