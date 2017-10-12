@@ -5,8 +5,9 @@ import VueSocketio from 'vue-socket.io'
 import App from './App'
 
 Vue.config.productionTip = false
+
 // Connect to the WebSocket
-Vue.use(VueSocketio, 'http://localhost:9090')
+Vue.use(VueSocketio, process.env.SERVER_URL)
 
 /* eslint-disable no-new */
 new Vue({
