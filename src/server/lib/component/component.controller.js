@@ -32,7 +32,6 @@ class ComponentController {
   removeOne (data) {
     return Component.remove({ _id: data._id }).then(() => {
       this.socket.emit('componentDeleted', data);
-      this.socket.broadcast.emit('refreshView', null);
     }).catch(err => console.error(err));
   }
 
