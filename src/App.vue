@@ -19,9 +19,13 @@
         :w="item.w"
         :h="item.h"
         :i="item.i"
-        :class="[item.plugin + '-plugin', item.component + '-component', item.component + '-' + item.i + '-component', {'editing': editing, 'not-editing': !editing}]">
-        <button style="position:fixed; top: 10px; right: 10px;cursor: pointer" @click="onDelete(item)" v-show="editing">X</button>
-        <button style="position:fixed; top: 30px; right: 10px;cursor: pointer" @click="onEditItem(item)" v-show="editing && item.config">edit</button>
+        :class="[item.plugin + '-plugin', item.component + '-component', item.component + '-' + item.i + '-component', {'editing': editing, 'not-editing': !editing}]"
+      >
+        <div class="edit-mode" v-show="editing">
+          <button @click="onDelete(item)" class="material-button accent">Supprimer</button>
+          <button @click="onEditItem(item)" v-show="item.config" class="material-button accent">Modifier</button>
+        </div>
+
         <component :is="item.component" :config="item.config"></component>
       </grid-item>
     </grid-layout>
@@ -53,12 +57,15 @@
       <i class="mfb-component__main-icon--resting material-icons">save</i>
     </a>
 
-    <modal v-show="showModal"
-           :value="hideModal"
-           :item="editItem"
-           @input="hideModal()"></modal>
+    <modal
+      v-show="showModal"
+      :value="hideModal"
+      :item="editItem"
+      @input="hideModal()"
+    ></modal>
   </div>
 </template>
+
 <script>
   import { components } from './app.module'
   import Modal from './components/Modal.vue'
@@ -188,5 +195,20 @@
 
   .not-editing > .vue-resizable-handle {
     display: none;
+  }
+
+  .vue-grid-item  .edit-mode {
+    cursor: move;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $primary-color-80-opacity;
+    padding: 8px;
+    box-sizing: border-box;
   }
 </style>
