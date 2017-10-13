@@ -116,6 +116,7 @@
         this.editItem = null
         this.showModal = false
       }
+
     },
 
     sockets: {
@@ -140,6 +141,10 @@
 
       componentDeleted (component) {
         this.layout = this.layout.filter((item) => item._id !== component._id)
+      },
+
+      refreshView () {
+        window.location.reload()
       }
     }
   }

@@ -6,29 +6,33 @@ class ComponentController {
     this.socket = socket;
   }
 
-  update (item) {
+  async update (item) {
     const id = item._id;
     delete item._id;
 
-    Component.update({ _id: id }, { $set: item })
-      .then(() => {
-        this.socket.emit('componentUpdated', item);
-      })
-      .catch(err=> console.err(result))
+    await Component.update({ _id: id }, { $set: item });
+
+    this.socket.emit('componentUpdated', item);
+    this.socket.broadcast.emit('refreshView', null);
+    // this.sockets.emit('refreshView', null);
   }
 
-  updateAll (data) {
-    data.forEach(async (item) => {
+  async updateAll (data) {
+    for (const item of data) {
       const id = item._id;
       delete item._id;
 
       await Component.update({ _id: id }, { $set: item })
-    });
+    }
+
+    // this.sockets.emit('refreshView', null);
+    this.socket.broadcast.emit('refreshView', null);
   }
 
   removeOne (data) {
     return Component.remove({ _id: data._id }).then(() => {
       this.socket.emit('componentDeleted', data);
+      this.socket.broadcast.emit('refreshView', null);
     }).catch(err => console.error(err));
   }
 
@@ -48,6 +52,7 @@ class ComponentController {
         cmpt.i = cmpt._id;
 
         this.socket.emit('componentCreated', cmpt);
+        this.socket.broadcast.emit('refreshView', null);
       })
       .catch(err => console.error(err));
   }
