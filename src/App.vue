@@ -198,9 +198,10 @@
   }
 
   .vue-grid-item  .edit-mode {
+    z-index: 10;
     cursor: move;
     display: flex;
-    flex-direction: column;
+    align-items: flex-end;
     justify-content: flex-end;
     position: absolute;
     top: 0;
@@ -208,7 +209,6 @@
     width: 100%;
     height: 100%;
     background-color: $primary-color-80-opacity;
-    padding: 8px;
     box-sizing: border-box;
   }
 </style>
